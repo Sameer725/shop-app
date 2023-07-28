@@ -1,0 +1,12 @@
+**/node_modules/
+**/dist/
+
+yarn.lock
+
+android/**
+ios/**
+
+src/types/generated-ui-types.ts
+src/types/schema.graphql
+
+.eslintrc.js

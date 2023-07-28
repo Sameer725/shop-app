@@ -1,0 +1,31 @@
+{
+  "overwrite": true,
+  "config": {
+    "strict": true
+  },
+  "schema": ["https://api.dev.neustark.bevelop.de/shop-api"],
+  "generates": {
+    "src/types/schema.graphql": {
+      "plugins": [
+        {
+          "add": {
+            "content": "#               AUTO GENERATED FILE               #\n# This file was generated based on \"codegen.json\" #\n#              Do not edit manually!              #\n"
+          }
+        },
+        "schema-ast"
+      ]
+    },
+    "src/types/generated-ui-types.ts": {
+      "schema": "https://api.dev.neustark.bevelop.de/shop-api",
+      "documents": ["src/**/*.graphql.ts", "src/**/*.fragment.ts"],
+      "plugins": [
+        {
+          "add": { "content": "/* eslint-disable */" }
+        },
+        "typescript",
+        "typescript-compatibility",
+        "typescript-operations"
+      ]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+local_branch="$(git rev-parse --abbrev-ref HEAD)"
+
+check_develop_branch="develop"
+
+if printf "%s\n" "$local_branch" | grep -qE "$check_develop_branch"; then
+  exit 0
+fi
+
+valid_branch_regex="^(feature|feat|fix|chore|release|hotfix|epic|develop)\/[a-z0-9A-Z._-]+$"
+
+message="Error: There is something wrong with your branch name.\nBranch names in this project must adhere to this contract:\n\n  $valid_branch_regex\n\nPlease rename your branch to a valid name and try again.\n"
+
+if printf "%s\n" "$local_branch" | grep -qE "$valid_branch_regex"; then
+  exit 0
+fi
+
+echo "$message"
+exit 1

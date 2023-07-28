@@ -1,0 +1,8 @@
+export enum ErrorType {
+  // Order Transition Errors
+  OT_001 = 'INVALID_DELIVERY_DATE',
+  OT_002 = 'NO_ORDER_CAPACITY',
+  OT_003 = 'INSUFICIENT_QUANTITY',
+  OT_004 = 'GIFT_COUPON_ERROR',
+  OT_005 = 'PROMOTION_COUPON_ERROR',
+}

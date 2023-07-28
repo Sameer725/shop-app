@@ -1,0 +1,36 @@
+diff --git a/node_modules/react-native-pager-view/ios/ReactNativePageView.m b/node_modules/react-native-pager-view/ios/ReactNativePageView.m
+index 8f20bf8..9d52d9a 100644
+--- a/node_modules/react-native-pager-view/ios/ReactNativePageView.m
++++ b/node_modules/react-native-pager-view/ios/ReactNativePageView.m
+@@ -260,26 +260,19 @@ - (void)goTo:(NSInteger)index animated:(BOOL)animated {
+     long diff = labs(index - _currentIndex);
+     
+     if (isForward && diff > 0) {
+-        for (NSInteger i=_currentIndex; i<=index; i++) {
+-            if (i == _currentIndex) {
+-                continue;
+-            }
+-            [self goToViewController:i direction:direction animated:animated shouldCallOnPageSelected: i == index];
++        for (NSInteger i=_currentIndex+1; i<=index; i++) {
++            [self goToViewController:i direction:direction animated:(!self.animating && i == index) shouldCallOnPageSelected: i == index];
+         }
+     }
+     
+     if (!isForward && diff > 0) {
+-        for (NSInteger i=_currentIndex; i>=index; i--) {
+-            // Prevent removal of one or many pages at a time
+-            if (i == _currentIndex || i >= numberOfPages) {
+-                continue;
+-            }
+-            [self goToViewController:i direction:direction animated:animated shouldCallOnPageSelected: i == index];
++        for (NSInteger i=_currentIndex-1; i>=index; i--) {
++            [self goToViewController:i direction:direction animated:(!self.animating && i == index) shouldCallOnPageSelected: i == index];
+         }
+     }
+     
+     if (diff == 0) {
+-        [self goToViewController:index direction:direction animated:animated shouldCallOnPageSelected:YES];
++        [self goToViewController:index direction:direction animated:NO shouldCallOnPageSelected:YES];
+     }
+ }
+ 

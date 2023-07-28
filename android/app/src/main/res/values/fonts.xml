@@ -1,0 +1,7 @@
+<resources>
+    <style name="Inter">
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+</resources>
